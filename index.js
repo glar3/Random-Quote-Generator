@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const quote = document.getElementById("quote");
   const author = document.getElementById("author");
   const newQuote = document.querySelector(".newQuote");
-  const container = document.querySelector(".container");
-  const background = document.querySelector("background");
   const quotesArray = [
     ["The only way to do great work is to love what you do.", "Steve Jobs"],
     [
