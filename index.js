@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { container: "#ddccbb", background: "#998877", main: "#443322" },
   ];
 
-  let counter = 1;
+  let counter = Math.floor(Math.random() * themes.length);
 
   const start = Math.floor(Math.random() * quotesArray.length);
   quote.textContent = '" ' + quotesArray[start][0] + ' "';
@@ -236,14 +236,8 @@ document.addEventListener("DOMContentLoaded", function () {
     newQuote.style.boxShadow = "inset 0px 0px var(--main), 3px 3px var(--main)";
   };
 
-  newQuote.addEventListener("click", function () {
-    const position = Math.floor(Math.random() * quotesArray.length);
-    const themesPos = counter;
-
-    quote.textContent = '" ' + quotesArray[position][0] + ' "';
-    author.textContent = "~ " + quotesArray[position][1];
-    newQuote.style.boxShadow = "inset 3px 3px var(--main), 0px 0px var(--main)";
-
+  const changeTheme = function (num) {
+    const themesPos = num;
     document.documentElement.style.setProperty(
       "--background",
       themes[themesPos].background
@@ -258,6 +252,18 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     counter = (counter + 1) % themes.length;
+  };
+
+  changeTheme(counter);
+
+  newQuote.addEventListener("click", function () {
+    const position = Math.floor(Math.random() * quotesArray.length);
+
+    quote.textContent = '" ' + quotesArray[position][0] + ' "';
+    author.textContent = "~ " + quotesArray[position][1];
+    newQuote.style.boxShadow = "inset 3px 3px var(--main), 0px 0px var(--main)";
+
+    changeTheme(counter);
 
     setTimeout(resetButton, 300);
   });
