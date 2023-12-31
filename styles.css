@@ -56,7 +56,14 @@ h2 {
   font-style: italic;
 }
 
-.newQuote {
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.newQuote,
+.previous,
+.next {
   background-color: var(--container);
   outline: none;
   border: none;
@@ -72,6 +79,7 @@ h2 {
   transition: box-shadow 0.2s ease-in-out, background 2s;
 }
 
-/* .newQuote:hover {
-  box-shadow: inset 3px 3px var(--main), 0px 0px var(--main);
-} */
+.next,
+.previous {
+  display: none;
+}

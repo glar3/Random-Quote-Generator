@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const quote = document.getElementById("quote");
   const author = document.getElementById("author");
   const newQuote = document.querySelector(".newQuote");
+  const previousQuote = document.querySelector(".previous");
+  const nextQuote = document.querySelector(".next");
+  const usedQuotes = [];
 
   const quotesArray = [
     {
@@ -1189,6 +1192,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const resetButton = function () {
     newQuote.style.boxShadow = "inset 0px 0px var(--main), 3px 3px var(--main)";
   };
+  const resetPrevious = function () {
+    previousQuote.style.boxShadow =
+      "inset 0px 0px var(--main), 3px 3px var(--main)";
+  };
+  const resetNext = function () {
+    nextQuote.style.boxShadow =
+      "inset 0px 0px var(--main), 3px 3px var(--main)";
+  };
 
   const changeTheme = function (num) {
     const themesPos = num;
@@ -1212,13 +1223,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   newQuote.addEventListener("click", function () {
     const position = Math.floor(Math.random() * quotesArray.length);
-
-    quote.textContent = '" ' + quotesArray[position].quote + ' "';
-    author.textContent = "~ " + quotesArray[position].author;
+    const arrValue = quotesArray[position];
+    quote.textContent = '" ' + arrValue.quote + ' "';
+    author.textContent = "~ " + arrValue.author;
     newQuote.style.boxShadow = "inset 3px 3px var(--main), 0px 0px var(--main)";
+
+    // previousQuote.style.display = "block";
+
+    usedQuotes.push(arrValue);
 
     changeTheme(counter);
 
     setTimeout(resetButton, 300);
   });
+
+  // previousQuote.addEventListener("click", function () {
+  //   const position = Math.floor(Math.random() * quotesArray.length);
+  //   const arrValue = quotesArray[position];
+  //   quote.textContent = '" ' + arrValue.quote + ' "';
+  //   author.textContent = "~ " + arrValue.author;
+  //   previousQuote.style.boxShadow =
+  //     "inset 3px 3px var(--main), 0px 0px var(--main)";
+
+  //   nextQuote.style.display = "block";
+
+  //   changeTheme(counter);
+
+  //   setTimeout(resetPrevious, 300);
+  // });
+
+  // nextQuote.addEventListener("click", function () {
+  //   const position = Math.floor(Math.random() * quotesArray.length);
+  //   const arrValue = quotesArray[position];
+  //   quote.textContent = '" ' + arrValue.quote + ' "';
+  //   author.textContent = "~ " + arrValue.author;
+  //   nextQuote.style.boxShadow =
+  //     "inset 3px 3px var(--main), 0px 0px var(--main)";
+
+  //   changeTheme(counter);
+
+  //   setTimeout(resetNext, 300);
+  // });
 });
